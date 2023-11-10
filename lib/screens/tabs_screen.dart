@@ -48,10 +48,15 @@ class _TabsScreenState extends State<TabsScreen> {
     switch (_selectedPageIndex) {
       case 1:
         activePageTitle = 'Your favorites';
-        activePage = MealsScreen(meals: _favoriteMeals);
+        activePage = MealsScreen(
+          meals: _favoriteMeals,
+          onToggleFavorite: _toggleMealFavoriteStatus,
+        );
       default:
         activePageTitle = 'Categories';
-        activePage = const CategoriesScreen();
+        activePage = CategoriesScreen(
+          onToggleFavorite: _toggleMealFavoriteStatus,
+        );
     }
 
     return Scaffold(
