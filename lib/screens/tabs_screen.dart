@@ -26,7 +26,7 @@ class _TabsScreenState extends State<TabsScreen> {
     switch (_selectedPageIndex) {
       case 1:
         activePageTitle = 'Your favourites';
-        activePage = const MealsScreen(title: 'Favourites', meals: []);
+        activePage = const MealsScreen(meals: []);
       default:
         activePageTitle = 'Categories';
         activePage = const CategoriesScreen();
