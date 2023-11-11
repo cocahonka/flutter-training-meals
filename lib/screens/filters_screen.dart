@@ -3,35 +3,37 @@ import 'package:meals/models/filter.dart';
 import 'package:meals/widgets/filter_switch.dart';
 
 class FiltersScreen extends StatefulWidget {
-  const FiltersScreen({super.key});
+  const FiltersScreen(this.filtersStatus, {super.key});
+
+  final FiltersStatus filtersStatus;
 
   @override
   State<FiltersScreen> createState() => _FiltersScreenState();
 }
 
 class _FiltersScreenState extends State<FiltersScreen> {
-  var _glutenFreeFilterSet = false;
+  late var _glutenFreeFilterSet = widget.filtersStatus.gluttenFree;
   void _glutenFreeFilterChange(bool value) {
     setState(() {
       _glutenFreeFilterSet = value;
     });
   }
 
-  var _lactoseFreeFilterSet = false;
+  late var _lactoseFreeFilterSet = widget.filtersStatus.lactoseFree;
   void _lactoseFreeFilterChange(bool value) {
     setState(() {
       _lactoseFreeFilterSet = value;
     });
   }
 
-  var _vegetarianFreeFilterSet = false;
+  late var _vegetarianFreeFilterSet = widget.filtersStatus.vegeterian;
   void _vegetarianFreeFilterChange(bool value) {
     setState(() {
       _vegetarianFreeFilterSet = value;
     });
   }
 
-  var _veganFilterSet = false;
+  late var _veganFilterSet = widget.filtersStatus.vegan;
   void _veganFilterChange(bool value) {
     setState(() {
       _veganFilterSet = value;
