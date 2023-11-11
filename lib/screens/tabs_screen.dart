@@ -41,6 +41,10 @@ class _TabsScreenState extends State<TabsScreen> {
     });
   }
 
+  void _showMealsScreenFromDrawer() => Navigator.of(context).pop();
+
+  void _showFiltersScreenFromDrawer() => throw UnimplementedError();
+
   @override
   Widget build(BuildContext context) {
     final String activePageTitle;
@@ -64,7 +68,10 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(
         title: Text(activePageTitle),
       ),
-      drawer: const MainDrawer(),
+      drawer: MainDrawer(
+        onMealsScreenSelected: _showMealsScreenFromDrawer,
+        onFiltersScreenSelected: _showFiltersScreenFromDrawer,
+      ),
       body: activePage,
       bottomNavigationBar: BottomNavigationBar(
         onTap: _selectPage,
