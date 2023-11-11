@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
 import 'package:meals/screens/categories_screen.dart';
+import 'package:meals/screens/filters.dart';
 import 'package:meals/screens/meals_screen.dart';
 import 'package:meals/widgets/main_drawer.dart';
 
@@ -43,7 +44,16 @@ class _TabsScreenState extends State<TabsScreen> {
 
   void _showMealsScreenFromDrawer() => Navigator.of(context).pop();
 
-  void _showFiltersScreenFromDrawer() => throw UnimplementedError();
+  void _showFiltersScreenFromDrawer() {
+    Navigator.of(context).pop();
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (context) {
+          return const FiltersScreen();
+        },
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
