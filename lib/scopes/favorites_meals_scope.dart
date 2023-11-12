@@ -49,6 +49,22 @@ class FavoritesMealsWidget extends StatefulWidget {
 class _FavoritesMealsWidgetState extends State<FavoritesMealsWidget> {
   var _data = const FavoritesMealsState(favoritesMeals: []);
 
+  void toggleMealFavoriteStatus(Meal meal) {
+    final mealIsFavorite = _data.favoritesMeals.contains(meal);
+
+    setState(() {
+      if (mealIsFavorite) {
+        _data = _data.copyWith(
+          favoritesMeals: _data.favoritesMeals.where((favoriteMeal) => favoriteMeal.id != meal.id).toList(),
+        );
+      } else {
+        _data = _data.copyWith(
+          favoritesMeals: [..._data.favoritesMeals, meal],
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return FavoritesMealsScope(
