@@ -31,3 +31,29 @@ class FavoritesMealsScope extends InheritedWidget {
   @override
   bool updateShouldNotify(covariant FavoritesMealsScope oldWidget) => oldWidget.data != data;
 }
+
+class FavoritesMealsWidget extends StatefulWidget {
+  const FavoritesMealsWidget({required this.child, super.key});
+
+  final Widget child;
+
+  // ignore: library_private_types_in_public_api
+  static _FavoritesMealsWidgetState of(BuildContext context) {
+    return context.findAncestorStateOfType<_FavoritesMealsWidgetState>()!;
+  }
+
+  @override
+  State<FavoritesMealsWidget> createState() => _FavoritesMealsWidgetState();
+}
+
+class _FavoritesMealsWidgetState extends State<FavoritesMealsWidget> {
+  var _data = const FavoritesMealsState(favoritesMeals: []);
+
+  @override
+  Widget build(BuildContext context) {
+    return FavoritesMealsScope(
+      data: _data,
+      child: widget.child,
+    );
+  }
+}
