@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
 
 class FavoritesMealsState {
@@ -12,4 +13,21 @@ class FavoritesMealsState {
       favoritesMeals: favoritesMeals ?? this.favoritesMeals,
     );
   }
+}
+
+class FavoritesMealsScope extends InheritedWidget {
+  const FavoritesMealsScope({
+    required this.data,
+    required super.child,
+    super.key,
+  });
+
+  final FavoritesMealsState data;
+
+  static FavoritesMealsState watch(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<FavoritesMealsScope>()!.data;
+  }
+
+  @override
+  bool updateShouldNotify(covariant FavoritesMealsScope oldWidget) => oldWidget.data != data;
 }
