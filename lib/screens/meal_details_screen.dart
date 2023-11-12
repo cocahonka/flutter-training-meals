@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:meals/models/meal.dart';
+import 'package:meals/scopes/favorites_meals_scope.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealDetailsScreen extends StatelessWidget {
   const MealDetailsScreen(
     this.meal, {
-    required this.onToggleFavorite,
     super.key,
   });
 
   final Meal meal;
-  final ValueSetter<Meal> onToggleFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class MealDetailsScreen extends StatelessWidget {
         title: Text(meal.title),
         actions: [
           IconButton(
-            onPressed: () => onToggleFavorite(meal),
+            onPressed: () => FavoritesMealsWidget.of(context).toggleMealFavoriteStatus(meal),
             icon: const Icon(Icons.star),
           ),
         ],

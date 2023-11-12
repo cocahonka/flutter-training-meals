@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals/data/dummy_data.dart';
 import 'package:meals/models/filter.dart';
-import 'package:meals/models/meal.dart';
+import 'package:meals/scopes/favorites_meals_scope.dart';
 import 'package:meals/screens/categories_screen.dart';
 import 'package:meals/screens/filters_screen.dart';
 import 'package:meals/screens/meals_screen.dart';
@@ -16,7 +16,6 @@ class TabsScreen extends StatefulWidget {
 
 class _TabsScreenState extends State<TabsScreen> {
   var _selectedPageIndex = 0;
-  final List<Meal> _favoriteMeals = [];
   FiltersStatus _filtersStatus = (
     gluttenFree: false,
     lactoseFree: false,
@@ -24,18 +23,18 @@ class _TabsScreenState extends State<TabsScreen> {
     vegan: false,
   );
 
-  void _toggleMealFavoriteStatus(Meal meal) {
-    final isExisting = _favoriteMeals.contains(meal);
-    setState(() {
-      if (isExisting) {
-        _favoriteMeals.remove(meal);
-        _showInfoMessage('Meal is no longer a favorite.');
-      } else {
-        _favoriteMeals.add(meal);
-        _showInfoMessage('Marked as a favorite!');
-      }
-    });
-  }
+  // void _toggleMealFavoriteStatus(Meal meal) {
+  //   final isExisting = _favoriteMeals.contains(meal);
+  //   setState(() {
+  //     if (isExisting) {
+  //       _favoriteMeals.remove(meal);
+  //       _showInfoMessage('Meal is no longer a favorite.');
+  //     } else {
+  //       _favoriteMeals.add(meal);
+  //       _showInfoMessage('Marked as a favorite!');
+  //     }
+  //   });
+  // }
 
   void _showInfoMessage(String message) {
     ScaffoldMessenger.of(context).clearSnackBars();
@@ -84,15 +83,14 @@ class _TabsScreenState extends State<TabsScreen> {
     switch (_selectedPageIndex) {
       case 1:
         activePageTitle = 'Your favorites';
+        final favoritesMeals = FavoritesMealsScope.watch(context).favoritesMeals;
         activePage = MealsScreen(
-          meals: _favoriteMeals,
-          onToggleFavorite: _toggleMealFavoriteStatus,
+          meals: favoritesMeals,
         );
       default:
         activePageTitle = 'Categories';
         activePage = CategoriesScreen(
           availableMeals: availableMeals,
-          onToggleFavorite: _toggleMealFavoriteStatus,
         );
     }
 
