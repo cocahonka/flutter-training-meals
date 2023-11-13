@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:meals/models/filter.dart';
+import 'package:meals/scopes/filters_scope.dart';
 
 class FilterSwitch extends StatelessWidget {
   const FilterSwitch({
-    required this.value,
+    required this.filter,
     required this.onChanged,
     required this.title,
     required this.subtitle,
     super.key,
   });
 
-  final bool value;
+  final Filter filter;
   final ValueSetter<bool> onChanged;
   final String title;
   final String subtitle;
@@ -17,7 +19,7 @@ class FilterSwitch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SwitchListTile(
-      value: value,
+      value: FiltersStateScope.watch(context, filter).getByFilter(filter),
       onChanged: onChanged,
       title: Text(
         title,

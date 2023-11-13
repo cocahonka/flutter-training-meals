@@ -25,25 +25,25 @@ class _FiltersScreenState extends State<FiltersScreen> {
         child: Column(
           children: [
             FilterSwitch(
-              value: FiltersStateScope.watch(context, Filter.gluttenFree).gluttenFree,
+              filter: Filter.gluttenFree,
               onChanged: FiltersStateProvider.of(context).changeGluten,
               title: 'Gluten-free',
               subtitle: 'Only included gluten-free meals.',
             ),
             FilterSwitch(
-              value: FiltersStateScope.watch(context, Filter.lactoseFree).lactoseFree,
+              filter: Filter.lactoseFree,
               onChanged: FiltersStateProvider.of(context).changeLactose,
               title: 'Lactose-free',
               subtitle: 'Only included lactose-free meals.',
             ),
             FilterSwitch(
-              value: FiltersStateScope.watch(context, Filter.vegeterian).vegeterian,
+              filter: Filter.vegeterian,
               onChanged: FiltersStateProvider.of(context).changeVegeterian,
               title: 'Vegeterian',
               subtitle: 'Only included vegeterian meals.',
             ),
             FilterSwitch(
-              value: FiltersStateScope.watch(context, Filter.vegan).vegan,
+              filter: Filter.vegan,
               onChanged: FiltersStateProvider.of(context).changeVegan,
               title: 'Vegan',
               subtitle: 'Only included vegan meals.',
