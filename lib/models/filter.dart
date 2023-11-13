@@ -4,10 +4,3 @@ enum Filter {
   vegeterian,
   vegan,
 }
-
-typedef FiltersStatus = ({
-  bool gluttenFree,
-  bool lactoseFree,
-  bool vegeterian,
-  bool vegan,
-});
