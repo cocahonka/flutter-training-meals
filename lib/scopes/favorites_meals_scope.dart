@@ -49,7 +49,7 @@ class FavoritesMealsWidget extends StatefulWidget {
 class _FavoritesMealsWidgetState extends State<FavoritesMealsWidget> {
   var _data = const FavoritesMealsState(favoritesMeals: []);
 
-  void toggleMealFavoriteStatus(Meal meal) {
+  bool toggleMealFavoriteStatus(Meal meal) {
     final mealIsFavorite = _data.favoritesMeals.contains(meal);
 
     setState(() {
@@ -63,6 +63,8 @@ class _FavoritesMealsWidgetState extends State<FavoritesMealsWidget> {
         );
       }
     });
+
+    return !mealIsFavorite;
   }
 
   @override

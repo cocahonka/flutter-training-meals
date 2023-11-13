@@ -18,7 +18,17 @@ class MealDetailsScreen extends StatelessWidget {
         title: Text(meal.title),
         actions: [
           IconButton(
-            onPressed: () => FavoritesMealsWidget.of(context).toggleMealFavoriteStatus(meal),
+            onPressed: () {
+              final wasAdded = FavoritesMealsWidget.of(context).toggleMealFavoriteStatus(meal);
+              ScaffoldMessenger.of(context).clearSnackBars();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    wasAdded ? 'Marked as a favorite!' : 'Meal is no longer a favorite.',
+                  ),
+                ),
+              );
+            },
             icon: const Icon(Icons.star),
           ),
         ],
