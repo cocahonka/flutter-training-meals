@@ -16,15 +16,6 @@ class FiltersState {
   final bool vegeterian;
   final bool vegan;
 
-  bool getByFilter(Filter filter) {
-    return switch (filter) {
-      Filter.gluttenFree => gluttenFree,
-      Filter.lactoseFree => lactoseFree,
-      Filter.vegeterian => vegeterian,
-      Filter.vegan => vegan,
-    };
-  }
-
   FiltersState copyWith({
     bool? gluttenFree,
     bool? lactoseFree,
