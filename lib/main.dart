@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meals/scopes/favorites_meals_scope.dart';
+import 'package:meals/scopes/filtered_meals_scope.dart';
 import 'package:meals/scopes/filters_scope.dart';
 import 'package:meals/screens/tabs_screen.dart';
 
@@ -24,10 +25,12 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FiltersStateProvider(
-      child: FavoritesMealsWidget(
-        child: MaterialApp(
-          theme: theme,
-          home: const TabsScreen(),
+      child: FilteredMealsWidget(
+        child: FavoritesMealsWidget(
+          child: MaterialApp(
+            theme: theme,
+            home: const TabsScreen(),
+          ),
         ),
       ),
     );

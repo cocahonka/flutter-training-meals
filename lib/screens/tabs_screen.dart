@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals/data/dummy_data.dart';
 import 'package:meals/scopes/favorites_meals_scope.dart';
-import 'package:meals/scopes/filters_scope.dart';
+import 'package:meals/scopes/filtered_meals_scope.dart';
 import 'package:meals/screens/categories_screen.dart';
 import 'package:meals/screens/filters_screen.dart';
 import 'package:meals/screens/meals_screen.dart';
@@ -38,16 +38,7 @@ class _TabsScreenState extends State<TabsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final filters = FiltersStateScope.watch(context);
-
-    final availableMeals = Constants.dummyMeals.where((meal) {
-      if (filters.gluttenFree && !meal.isGlutenFree) return false;
-      if (filters.lactoseFree && !meal.isLactoseFree) return false;
-      if (filters.vegeterian && !meal.isVegetarian) return false;
-      if (filters.vegan && !meal.isVegan) return false;
-
-      return true;
-    }).toList();
+    final availableMeals = FilteredMealsStateScope.watch(context);
 
     final String activePageTitle;
     final Widget activePage;
