@@ -33,10 +33,15 @@ class MealDetailsScreen extends StatelessWidget {
               );
             },
             icon: AnimatedSwitcher(
-              duration: const Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 500),
               transitionBuilder: (child, animation) {
-                return RotationTransition(
-                  turns: Tween<double>(begin: 0.8, end: 1).animate(animation),
+                return ScaleTransition(
+                  scale: Tween<double>(begin: 0, end: 1).animate(
+                    CurvedAnimation(
+                      parent: animation,
+                      curve: Curves.fastOutSlowIn,
+                    ),
+                  ),
                   child: child,
                 );
               },
