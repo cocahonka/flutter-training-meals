@@ -56,12 +56,15 @@ class MealDetailsScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
-              image: meal.imageUrl,
-              fit: BoxFit.cover,
-              height: 300,
-              width: double.infinity,
+            Hero(
+              tag: meal.id,
+              child: FadeInImage.memoryNetwork(
+                placeholder: kTransparentImage,
+                image: meal.imageUrl,
+                fit: BoxFit.cover,
+                height: 300,
+                width: double.infinity,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 14),
