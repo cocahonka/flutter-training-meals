@@ -58,8 +58,16 @@ class _CategoriesScreenState extends State<CategoriesScreen> with SingleTickerPr
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        return Padding(
-          padding: EdgeInsets.only(top: 100 - _animationController.value * 100),
+        return SlideTransition(
+          position: Tween(
+            begin: const Offset(0, 0.3),
+            end: Offset.zero,
+          ).animate(
+            CurvedAnimation(
+              parent: _animationController,
+              curve: Curves.easeInOut,
+            ),
+          ),
           child: child,
         );
       },
